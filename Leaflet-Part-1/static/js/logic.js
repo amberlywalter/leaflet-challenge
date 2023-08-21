@@ -1,7 +1,7 @@
 // Store our API endpoint as queryUrl.
 let queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson";
 
-// Perform a GET request to the query URL/
+// GET request to the query URL/
 d3.json(queryUrl).then(function (data) {
   console.log("Data loaded",)
   // Once we get a response, send the data.features object to the createFeatures function.
@@ -10,7 +10,7 @@ d3.json(queryUrl).then(function (data) {
 
 function createFeatures(earthquakeData) {
 
-  // Define a function that we want to run once for each feature in the features array.
+  
   // Give each feature a popup that describes the place and time of the earthquake.
   function onEachFeature(feature, layer) {
     layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
@@ -52,8 +52,7 @@ function markerColor(geometry) {
     else if (depth < 90) return "orangered";
     else return "#FF0000";
   } else {
-    // Handle the case where geometry or coordinates are missing or incomplete.
-    return "#000000"; // Provide a default color or handle the error as needed.
+        return "#000000"; 
   }
 }
 
@@ -81,7 +80,7 @@ function createMap(earthquakes) {
     Earthquakes: earthquakes
   };
 
-  // Create our map, giving it the streetmap and earthquakes layers to display on load.
+  // Create map, giving it the streetmap and earthquakes layers to display on load.
   let myMap = L.map("map", {
     center: [37.09, -95.71],
     zoom: 5,
